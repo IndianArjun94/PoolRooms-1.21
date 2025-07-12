@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "pool-rooms-mod",
+	"version": "${version}",
+	"name": "Pool Rooms",
+	"description": "Pool Rooms in Minecraft, figure out the rest yourself.",
+	"authors": [
+		"Arjun, Kaupenjoe for tutorials"
+	],
+	"contact": {
+		"homepage": "N/A",
+		"sources": "N/A"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/pool-rooms-mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.arjun.poolrooms.PoolRooms"
+		],
+		"fabric-datagen": [
+			"net.arjun.poolrooms.PoolRoomsDataGenerator"
+		],
+		"client": [
+			"net.arjun.poolrooms.PoolRoomsClient"
+		]
+	},
+	"mixins": [
+		"pool-rooms-mod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
