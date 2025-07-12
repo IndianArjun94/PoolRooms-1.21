@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "pool-rooms-mod:item/pool_spear"
+  }
+}
