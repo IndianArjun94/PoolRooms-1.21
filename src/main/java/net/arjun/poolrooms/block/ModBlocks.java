@@ -43,7 +43,7 @@ public class ModBlocks {
 
         SKYBOX_BLOCK_ENTITY_TYPE = Registry.register(
                 Registries.BLOCK_ENTITY_TYPE,
-                id("skybox_block_entity").id(),
+                id("light_skybox").id(),
                 FabricBlockEntityTypeBuilder.create(LightSkyboxBlockEntity::new, LIGHT_SKYBOX).build()
         );
 
