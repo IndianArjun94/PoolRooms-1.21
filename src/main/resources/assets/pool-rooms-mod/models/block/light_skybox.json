@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "front": "pool-rooms-mod:block/light_skybox_front",
+    "back": "pool-rooms-mod:block/light_skybox_back",
+    "left": "pool-rooms-mod:block/light_skybox_left",
+    "right": "pool-rooms-mod:block/light_skybox_right",
+    "top": "pool-rooms-mod:block/light_skybox_top",
+    "bottom": "pool-rooms-mod:block/light_skybox_bottom",
+    "particle": "pool-rooms-mod:block/light_skybox_front"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "texture": "#bottom", "cullface": "down" },
+        "up":    { "texture": "#top", "cullface": "up" },
+        "north": { "texture": "#back", "cullface": "north" },
+        "south": { "texture": "#front", "cullface": "south" },
+        "west":  { "texture": "#left", "cullface": "west" },
+        "east":  { "texture": "#right", "cullface": "east" }
+      }
+    }
+  ]
+}
