@@ -1,4 +1,8 @@
 {
   "item.pool-rooms-mod.pool_shard": "Pool Shard",
-  "item.pool-rooms-mod.pool_spear": "Quartz Spear"
+  "item.pool-rooms-mod.pool_spear": "Quartz Spear",
+
+  "block.pool-rooms-mod.pool_tiles": "Pool Tiles",
+
+  "block.pool-rooms-mod.light_skybox": "Light Skybox"
 }

@@ -1,5 +1,6 @@
 package net.arjun.poolrooms;
 
+import net.arjun.poolrooms.block.ModBlocks;
 import net.arjun.poolrooms.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -21,6 +22,7 @@ public class PoolRooms implements ModInitializer {
 		// Proceed with mild caution.
 
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 
 		LOGGER.info("Hello Fabric world!");
 	}
