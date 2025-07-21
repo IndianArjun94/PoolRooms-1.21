@@ -1,8 +1,6 @@
 package net.arjun.poolrooms.block;
 
 import net.arjun.poolrooms.PoolRooms;
-import net.arjun.poolrooms.block.custom.LightSkyboxBlock.LightSkyboxBlock;
-import net.arjun.poolrooms.block.custom.LightSkyboxBlock.LightSkyboxBlockEntity;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -16,13 +14,10 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static BlockEntityType<LightSkyboxBlockEntity> LIGHT_SKYBOX_BLOCK_ENTITY_TYPE;
 
     public static final Block POOL_TILES = registerBlock("pool_tiles",
             new Block(AbstractBlock.Settings.create().strength(2f).sounds(BlockSoundGroup.STONE)));
 
-
-    public static final Block LIGHT_SKYBOX = registerBlock("light_skybox", new LightSkyboxBlock());
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
@@ -39,7 +34,6 @@ public class ModBlocks {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.add(POOL_TILES);
-            entries.add(LIGHT_SKYBOX);
         });
     }
 }
