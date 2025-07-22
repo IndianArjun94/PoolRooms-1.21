@@ -4,7 +4,9 @@ import net.arjun.poolrooms.PoolRooms;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -17,6 +19,18 @@ public class ModBlocks {
 
     public static final Block POOL_TILES = registerBlock("pool_tiles",
             new Block(AbstractBlock.Settings.create().strength(2f).sounds(BlockSoundGroup.STONE)));
+
+    public static final Block POOL_TILE_STAIRS = registerBlock("pool_tile_stairs",
+            new StairsBlock(ModBlocks.POOL_TILES.getDefaultState(), AbstractBlock.Settings.create().strength(2f).sounds(BlockSoundGroup.STONE)));
+
+    public static final Block POOL_TILE_SLAB = registerBlock("pool_tile_slab",
+            new SlabBlock(AbstractBlock.Settings.create().strength(2f).sounds(BlockSoundGroup.STONE)));
+
+    public static final BlockFamily POOL_TILES_FAMILY =
+            new BlockFamily.Builder(ModBlocks.POOL_TILES)
+                    .slab(ModBlocks.POOL_TILE_SLAB)
+                    .stairs(ModBlocks.POOL_TILE_STAIRS)
+                    .build();
 
 
     private static Block registerBlock(String name, Block block) {

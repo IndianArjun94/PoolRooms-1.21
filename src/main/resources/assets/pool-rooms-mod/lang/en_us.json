@@ -4,5 +4,7 @@
 
   "item.pool-rooms-mod.pool_rations": "Almost-Expired Rations",
 
-  "block.pool-rooms-mod.pool_tiles": "Pool Tiles"
+  "block.pool-rooms-mod.pool_tiles": "Pool Tiles",
+  "block.pool-rooms-mod.pool_tile_slab": "Pool Tile Slab",
+  "block.pool-rooms-mod.pool_tile_stairs": "Pool Tile Stairs"
 }

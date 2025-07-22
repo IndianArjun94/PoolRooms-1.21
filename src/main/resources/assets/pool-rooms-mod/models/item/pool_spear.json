@@ -2,5 +2,27 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "pool-rooms-mod:item/pool_spear"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 123, 123, 123 ],
+      "translation": [ 3, 0, 0 ],
+      "scale": [ 6.0, 12.0, 6.0 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ -60, 90, 0 ],
+      "translation": [ 0, 5, 1 ],
+      "scale": [ 1.0, 1.0, 1.0 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ -20, -90, 25 ],
+      "translation": [ 1.13, 3.2, 1.13 ],
+      "scale": [ 0.68, 0.68, 0.68 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ -20, 90, -25 ],
+      "translation": [ 1.13, 3.2, 1.13 ],
+      "scale": [ 0.68, 0.68, 0.68 ]
+    }
   }
 }
