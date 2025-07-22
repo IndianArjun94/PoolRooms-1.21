@@ -1,5 +1,6 @@
 package net.arjun.poolrooms.block.entity.LightSkyboxBlockFamily;
 
+import net.arjun.poolrooms.PoolRooms;
 import net.arjun.poolrooms.block.entity.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -12,7 +13,7 @@ public class LightSkyboxBlockEntity extends BlockEntity {
     }
 
     public boolean shouldDrawSide(Direction direction) {
-        return direction.getAxis() == Direction.Axis.Y;
+        return direction.getAxis() == Direction.Axis.Z || direction.getAxis() == Direction.Axis.X;
     }
 
 }
