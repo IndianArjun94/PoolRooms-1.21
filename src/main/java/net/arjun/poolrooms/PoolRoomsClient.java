@@ -56,7 +56,7 @@ public class PoolRoomsClient implements ClientModInitializer {
                     LIGHT_SKYBOX_SHADER = new ShaderProgram(
                             manager,
                             "rendertype_light_skybox_block", // This matches your JSON file name
-                            VertexFormats.POSITION_COLOR // Define the vertex format your shader expects
+                            VertexFormats.POSITION_TEXTURE // Define the vertex format your shader expects
                     );
 
                     LIGHT_SKYBOX_PROGRAM = new RenderPhase.ShaderProgram(PoolRoomsClient::getLightSkyboxShader);
@@ -65,7 +65,7 @@ public class PoolRoomsClient implements ClientModInitializer {
                 }
                 LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_BLOCK_RENDER_LAYER = RenderLayer.of(
                         "light_skybox_block_render_layer",
-                        VertexFormats.POSITION,
+                        VertexFormats.POSITION_TEXTURE,
                         VertexFormat.DrawMode.QUADS,
                         1536,
                         false,
