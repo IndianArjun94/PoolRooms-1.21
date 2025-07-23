@@ -13,7 +13,7 @@ public class LightSkyboxBlockEntity extends BlockEntity {
     }
 
     public boolean shouldDrawSide(Direction direction) {
-        return direction.getAxis() == Direction.Axis.Z || direction.getAxis() == Direction.Axis.X;
+        return true;
     }
 
 }
