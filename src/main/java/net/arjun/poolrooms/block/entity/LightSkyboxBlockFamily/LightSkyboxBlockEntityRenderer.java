@@ -62,29 +62,21 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
             player = mc.player; // Get the player entity
 
             if (player != null) {
-                // Get the player's yaw (horizontal rotation) in degrees.
-                float playerYawDegrees = player.getYaw();
 
-                // Convert degrees to radians, as your GLSL shader expects radians for `PlayerYaw`.
-                float playerYawRadians = (float) Math.toRadians(playerYawDegrees);
-
-                // Find the "PlayerYaw" uniform within your shader program.
-                Uniform playerYawUniform = shaderProgram.getUniform("PlayerYaw");
-
-                Vec3d playerPos = MinecraftClient.getInstance().player.getPos();
-                shaderProgram.getUniform("playerPos").set((float)player.getX(), 0.0f, (float)player.getZ());
+//                Vec3d playerPos = MinecraftClient.getInstance().player.getPos();
+////                shaderProgram.getUniform("playerPos").set((float)playerPos.getX(), 0.0f, (float)playerPos.getZ());
+//
+//                double scale = 0.01; // tune this value
+//
+//                shaderProgram.getUniform("playerPos").set(
+//                        (float)(playerPos.getX() * scale),
+//                        0.0f,
+//                        (float)(playerPos.getZ() * scale)
+//                );
 
 
                 // If the uniform is found, set its value.
                 // This must happen *after* the shader is active.
-                if (playerYawUniform != null) {
-                    playerYawUniform.set(playerYawRadians);
-//                    System.out.println("Yaw: " + playerYawDegrees);
-//                    System.out.println("Yaw Uniform: " + shaderProgram.getUniform("PlayerYaw").getFloatData().get());
-                } else {
-                    // Log a warning if the uniform isn't found.
-                    System.err.println("Warning: PlayerYaw uniform not found in rendertype_light_skybox_block shader.");
-                }
             }
         }
 
