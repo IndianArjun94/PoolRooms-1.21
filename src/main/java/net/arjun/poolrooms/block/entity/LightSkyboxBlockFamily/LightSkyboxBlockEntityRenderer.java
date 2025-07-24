@@ -56,9 +56,16 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
 
             if (player != null) {
                 Vec3d playerPos = player.getPos();
-                shaderProgram.getUniform("playerPos").set((float)playerPos.getX(), (float)playerPos.getY(), (float)playerPos.getZ());
+//                shaderProgram.getUniform("playerPos").set((float)playerPos.getX(), (float)playerPos.getY(), (float)playerPos.getZ());
                 Vec3d blockPos = lightSkyboxBlockEntity.getPos().toCenterPos();
-                shaderProgram.getUniform("blockPos").set((float)blockPos.getX(), (float)blockPos.getY(), (float)blockPos.getZ());
+//                shaderProgram.getUniform("blockPos").set((float)blockPos.getX(), (float)blockPos.getY(), (float)blockPos.getZ());
+
+                shaderProgram.getUniform("posDiffX").set((float) (playerPos.getX() - blockPos.getX()));
+                shaderProgram.getUniform("posDiffY").set((float) (playerPos.getY() - blockPos.getY()));
+//                System.out.println("X: " + shaderProgram.getUniform("blockPos").getFloatData().get(0) + ", Y: " +  shaderProgram.getUniform("blockPos").getFloatData().get(1) + ", Z: " +  shaderProgram.getUniform("blockPos").getFloatData().get(2) +
+//                        "Diff: " + (shaderProgram.getUniform("playerPos").getFloatData().get(0)-
+//                                        shaderProgram.getUniform("blockPos").getFloatData().get(0)));
+
                 // If the uniform is found, set its value.
                 // This must happen *after* the shader is active.
             }

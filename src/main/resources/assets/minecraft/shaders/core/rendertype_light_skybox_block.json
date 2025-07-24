@@ -18,6 +18,18 @@
       "type": "float",
       "count": 3,
       "values": [0.0, 0.0, 0.0]
+    },
+    {
+      "name": "posDiffX",
+      "type": "float",
+      "count": 1,
+      "values": [0.0]
+    },
+    {
+      "name": "posDiffY",
+      "type": "float",
+      "count": 1,
+      "values": [0.0]
     }
   ]
 }
