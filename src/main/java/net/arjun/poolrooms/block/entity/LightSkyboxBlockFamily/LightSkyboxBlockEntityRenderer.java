@@ -6,6 +6,7 @@ import net.arjun.poolrooms.PoolRoomsClient; // Import your client class to acces
 import net.minecraft.client.MinecraftClient; // To get the player instance
 import net.minecraft.client.gl.ShaderProgram; // For the shader program type
 import net.minecraft.client.gl.Uniform; // For the Uniform type
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -35,7 +36,6 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
 
 
     MinecraftClient mc = MinecraftClient.getInstance();
-    PlayerEntity player;
 
     public static RenderLayer LIGHT_SKYBOX_BLOCK_RENDER_LAYER; // This is set in PoolRoomsClient
 
@@ -47,34 +47,20 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
     public void render(LightSkyboxBlockEntity lightSkyboxBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
         Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
 
-        // IMPORTANT: Obtain the VertexConsumer *first*.
-        // This action (vertexConsumerProvider.getBuffer(this.getLayer())) implicitly
-        // activates the shader program associated with LIGHT_SKYBOX_BLOCK_RENDER_LAYER.
         VertexConsumer consumer = vertexConsumerProvider.getBuffer(this.getLayer());
 
-        // --- START: Add PlayerYaw Uniform Setting ---
-
-        // Get the custom shader program instance from your client initializer.
-        // This should be the same shader program that was just activated by getBuffer().
         ShaderProgram shaderProgram = PoolRoomsClient.getLightSkyboxShader();
 
         if (shaderProgram != null) {
-            player = mc.player; // Get the player entity
+            PlayerEntity player = MinecraftClient.getInstance().player;
 
             if (player != null) {
-
-//                Vec3d playerPos = MinecraftClient.getInstance().player.getPos();
-////                shaderProgram.getUniform("playerPos").set((float)playerPos.getX(), 0.0f, (float)playerPos.getZ());
-//
-//                double scale = 0.01; // tune this value
-//
-//                shaderProgram.getUniform("playerPos").set(
-//                        (float)(playerPos.getX() * scale),
-//                        0.0f,
-//                        (float)(playerPos.getZ() * scale)
-//                );
-
-
+                Vec3d playerPos = player.getPos();
+                shaderProgram.getUniform("playerPos").set((float)playerPos.getX(), (float)playerPos.getY(), (float)playerPos.getZ());
+                System.out.println("player: " + shaderProgram.getUniform("playerPos").getFloatData().get(0) + " " + shaderProgram.getUniform("playerPos").getFloatData().get(1) + " " + shaderProgram.getUniform("playerPos").getFloatData().get(2));
+                Vec3d blockPos = lightSkyboxBlockEntity.getPos().toCenterPos();
+                shaderProgram.getUniform("blockPos").set((float)blockPos.getX(), (float)blockPos.getY(), (float)blockPos.getZ());
+                System.out.println("block: " + shaderProgram.getUniform("blockPos").getFloatData().get(0) + " " + shaderProgram.getUniform("blockPos").getFloatData().get(1) + " " + shaderProgram.getUniform("blockPos").getFloatData().get(2));
                 // If the uniform is found, set its value.
                 // This must happen *after* the shader is active.
             }
