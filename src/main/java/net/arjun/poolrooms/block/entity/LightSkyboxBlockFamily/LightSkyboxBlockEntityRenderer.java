@@ -17,6 +17,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix4f;
 
 // Assuming LightSkyboxBlockEntity is in this package or imported correctly
@@ -69,6 +70,10 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
 
                 // Find the "PlayerYaw" uniform within your shader program.
                 Uniform playerYawUniform = shaderProgram.getUniform("PlayerYaw");
+
+                Vec3d playerPos = MinecraftClient.getInstance().player.getPos();
+                shaderProgram.getUniform("playerPos").set((float)player.getX(), 0.0f, (float)player.getZ());
+
 
                 // If the uniform is found, set its value.
                 // This must happen *after* the shader is active.

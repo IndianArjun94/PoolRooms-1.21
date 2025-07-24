@@ -14,6 +14,19 @@
       "type": "float",
       "count": 1,
       "values": [ 0.0 ]
+    },
+    {
+      "name": "uvScale",
+      "type": "float",
+      "count": 1,
+      "values": [0.1]
+    },
+    {
+      "name": "playerPos",
+      "type": "float",
+      "count": 3,
+      "values": [0.0, 0.0, 0.0]
     }
+
   ]
 }

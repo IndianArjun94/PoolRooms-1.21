@@ -85,5 +85,9 @@ public class PoolRoomsClient implements ClientModInitializer {
 
             }
         });
+
+        if (PoolRoomsClient.getLightSkyboxShader()!=null) {
+            PoolRoomsClient.getLightSkyboxShader().getUniform("uvScale").set(0.1f);
+        }
     }
 }
