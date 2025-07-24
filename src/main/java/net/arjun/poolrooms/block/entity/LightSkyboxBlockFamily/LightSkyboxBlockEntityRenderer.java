@@ -57,10 +57,8 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
             if (player != null) {
                 Vec3d playerPos = player.getPos();
                 shaderProgram.getUniform("playerPos").set((float)playerPos.getX(), (float)playerPos.getY(), (float)playerPos.getZ());
-                System.out.println("player: " + shaderProgram.getUniform("playerPos").getFloatData().get(0) + " " + shaderProgram.getUniform("playerPos").getFloatData().get(1) + " " + shaderProgram.getUniform("playerPos").getFloatData().get(2));
                 Vec3d blockPos = lightSkyboxBlockEntity.getPos().toCenterPos();
                 shaderProgram.getUniform("blockPos").set((float)blockPos.getX(), (float)blockPos.getY(), (float)blockPos.getZ());
-                System.out.println("block: " + shaderProgram.getUniform("blockPos").getFloatData().get(0) + " " + shaderProgram.getUniform("blockPos").getFloatData().get(1) + " " + shaderProgram.getUniform("blockPos").getFloatData().get(2));
                 // If the uniform is found, set its value.
                 // This must happen *after* the shader is active.
             }
