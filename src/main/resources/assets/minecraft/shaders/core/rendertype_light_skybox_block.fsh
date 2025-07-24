@@ -13,15 +13,10 @@ uniform float posDiffY;
 out vec4 fragColor;
 
 void main() {
-    float scale = 0.25;
+    float scale = 0.25; // Controls zoom
 
-    vec2 zoomedTexCoord = (texCoord - 0.5) * scale + 0.5;
+    // Compute shifted coordinate: zoomed texCoord + position offset
+    vec2 shiftedCoord = (texCoord * scale) + (vec2(posDiffX, posDiffY) * scale);
 
-//    float shiftAmountX = playerPos.x - blockPos.x;
-//    float shiftAmountY = playerPos.y - blockPos.y;
-
-//    vec2 shiftedTexCoord = vec2(fract(zoomedTexCoord.x - shiftAmountX), fract(zoomedTexCoord.y - shiftAmountY));
-    vec2 shiftedTexCoord = vec2(zoomedTexCoord.x - posDiffX*scale, zoomedTexCoord.y - posDiffY*scale);
-
-    fragColor = texture(Sampler0, shiftedTexCoord);
+    fragColor = texture(Sampler0, shiftedCoord);
 }

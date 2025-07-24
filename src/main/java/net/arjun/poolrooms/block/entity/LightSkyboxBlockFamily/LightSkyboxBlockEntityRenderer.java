@@ -62,9 +62,8 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
 
                 shaderProgram.getUniform("posDiffX").set((float) (playerPos.getX() - blockPos.getX()));
                 shaderProgram.getUniform("posDiffY").set((float) (playerPos.getY() - blockPos.getY()));
-//                System.out.println("X: " + shaderProgram.getUniform("blockPos").getFloatData().get(0) + ", Y: " +  shaderProgram.getUniform("blockPos").getFloatData().get(1) + ", Z: " +  shaderProgram.getUniform("blockPos").getFloatData().get(2) +
-//                        "Diff: " + (shaderProgram.getUniform("playerPos").getFloatData().get(0)-
-//                                        shaderProgram.getUniform("blockPos").getFloatData().get(0)));
+                System.out.println("X: " + blockPos.getX() + ", Y: " + blockPos.getY() + ", Z: " + blockPos.getZ() +
+                        ", Diff: " + shaderProgram.getUniform("posDiffX").getFloatData().get());
 
                 // If the uniform is found, set its value.
                 // This must happen *after* the shader is active.
