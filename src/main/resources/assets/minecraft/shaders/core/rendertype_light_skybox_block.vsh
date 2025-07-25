@@ -1,9 +1,5 @@
 #version 150
 
-//layout(location = 0) in vec3 aPosition; // Vertex position
-//layout(location = 1) in vec2 aTexCoord; // Texture coordinates
-//layout(location = 2) in vec3 blockPos; // Unique position for this block
-
 in vec3 Position;
 in vec2 UV0;
 
