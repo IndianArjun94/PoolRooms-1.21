@@ -10,7 +10,12 @@ uniform vec3 playerPos;
 out vec4 fragColor;
 
 void main() {
-    float zoom = 0.1; // Controls zoom
+//    float zoom = abs(max(min(0.1 * abs(playerPos.z-blockPos.z), 1), 0.00001)); // Controls zoom
+
+    float zDiff = playerPos.z-blockPos.z;
+
+    float zoom = abs(max(min(0.01 * (zDiff + 11.5), 1), 0.00001)); // Controls zoom
+//    float zoom = 0.7;
     float speedMultipler = 0.01;
 
     vec2 blockBasePos = floor(blockPos.xy);
@@ -20,9 +25,11 @@ void main() {
     // Compute shifted coordinate: zoomed texCoord + position offset
 //    vec2 shiftedCoord = fract((texCoord * scale) + (vec2(-(playerPos.x-blockPos.x), playerPos.y-blockPos.y) * scale));
 
-    vec2 shiftedCoord = fract((worldAlignedPos - playerPos.xy * speedMultipler) * zoom);
+    vec2 shiftedCoord = (worldAlignedPos - playerPos.xy * speedMultipler);
 
-    shiftedCoord.y = 1.0 - shiftedCoord.y;
+    vec2 zoomedCoord = (shiftedCoord - 0.5) * zoom + 0.5;
 
-    fragColor = texture(Sampler0, shiftedCoord);
+    zoomedCoord.y = 1.0 - zoomedCoord.y;
+
+    fragColor = texture(Sampler0, zoomedCoord);
 }

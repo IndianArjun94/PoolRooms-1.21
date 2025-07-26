@@ -11,6 +11,10 @@ out vec2 texCoord;
 out vec3 blockPos;
 
 void main() {
+    mat3 rotationOnly = mat3(ModelViewMat);
+
+    vec3 rotatedPos = rotationOnly * blockPos;
+
     gl_Position = ProjMat * ModelViewMat * vec4(Position, 1.0);
 
     texCoord = UV0; // Pass directly
