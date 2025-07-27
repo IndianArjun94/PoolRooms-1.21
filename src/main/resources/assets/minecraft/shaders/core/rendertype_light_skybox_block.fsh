@@ -19,7 +19,7 @@ void main() {
 //        zOffset = -zOffset;
 //    }
 
-    float zoom = max(min(0.01 * abs(zDiff + zOffset), 1), 0.00001); // Controls zoom
+    float zoom = 1-max(min(0.01 * abs(zDiff + zOffset), 1), 0.00001); // Controls zoom
 //    float zoom = 0.7;
     float speedMultipler = 0.01;
 
