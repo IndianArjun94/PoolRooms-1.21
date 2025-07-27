@@ -13,10 +13,17 @@ void main() {
 //    float zoom = abs(max(min(0.1 * abs(playerPos.z-blockPos.z), 1), 0.00001)); // Controls zoom
 
     float zDiff = playerPos.z-blockPos.z;
+    float zOffset = 12;
 
-    float zoom = abs(max(min(0.01 * (zDiff + 11.5), 1), 0.00001)); // Controls zoom
+//    if (zDiff > 0) {
+//        zOffset = -zOffset;
+//    }
+
+    float zoom = max(min(0.01 * abs(zDiff + zOffset), 1), 0.00001); // Controls zoom
 //    float zoom = 0.7;
     float speedMultipler = 0.01;
+
+//    zoom = 1-zoom;
 
     vec2 blockBasePos = floor(blockPos.xy);
     vec2 localPos = blockPos.xy - blockBasePos; // This is identical to texCoord, but ensures precision
@@ -32,4 +39,10 @@ void main() {
     zoomedCoord.y = 1.0 - zoomedCoord.y;
 
     fragColor = texture(Sampler0, zoomedCoord);
+
+//    if (zDiff+zOffset > 0) {
+//        fragColor = texture(Sampler0, zoomedCoord);
+//    } else {
+//        fragColor = vec4(0,0.5,1,0);
+//    }
 }
