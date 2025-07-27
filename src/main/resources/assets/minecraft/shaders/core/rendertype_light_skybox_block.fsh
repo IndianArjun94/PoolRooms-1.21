@@ -19,7 +19,10 @@ void main() {
 //        zOffset = -zOffset;
 //    }
 
-    float zoom = 1-max(min(0.01 * abs(zDiff + zOffset), 1), 0.00001); // Controls zoom
+    float k = 0.1;
+    float distance = abs(zDiff + zOffset);
+    float zoom = exp(-k * distance);
+//    float zoom = 1-max(min(0.01 * abs(zDiff + zOffset), 1), 0.00001); // Controls zoom
 //    float zoom = 0.7;
     float speedMultipler = 0.01;
 
@@ -35,6 +38,8 @@ void main() {
     vec2 shiftedCoord = (worldAlignedPos - playerPos.xy * speedMultipler);
 
     vec2 zoomedCoord = (shiftedCoord - 0.5) * zoom + 0.5;
+
+    zoomedCoord.y = zoomedCoord.y-0.1;
 
     zoomedCoord.y = 1.0 - zoomedCoord.y;
 
