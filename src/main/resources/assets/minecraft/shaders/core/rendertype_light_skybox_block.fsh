@@ -13,28 +13,17 @@ void main() {
 //    float zoom = abs(max(min(0.1 * abs(playerPos.z-blockPos.z), 1), 0.00001)); // Controls zoom
 
     float zDiff = playerPos.z-blockPos.z;
-    float zOffset = 12;
+    float zOffset = 14.5;
 
-//    if (zDiff > 0) {
-//        zOffset = -zOffset;
-//    }
-
-    float k = 0.1;
-    float distance = abs(zDiff + zOffset);
-    float zoom = exp(-k * distance);
-//    float zoom = 1-max(min(0.01 * abs(zDiff + zOffset), 1), 0.00001); // Controls zoom
-//    float zoom = 0.7;
+    float finalZDiff = abs(zDiff + zOffset);
+    float zoom = 0.5 / (1.0 + 0.15 * finalZDiff); // smoother than exp
     float speedMultipler = 0.01;
-
-//    zoom = 1-zoom;
 
     vec2 blockBasePos = floor(blockPos.xy);
     vec2 localPos = blockPos.xy - blockBasePos; // This is identical to texCoord, but ensures precision
     vec2 worldAlignedPos = blockBasePos + localPos;
 
     // Compute shifted coordinate: zoomed texCoord + position offset
-//    vec2 shiftedCoord = fract((texCoord * scale) + (vec2(-(playerPos.x-blockPos.x), playerPos.y-blockPos.y) * scale));
-
     vec2 shiftedCoord = (worldAlignedPos - playerPos.xy * speedMultipler);
 
     vec2 zoomedCoord = (shiftedCoord - 0.5) * zoom + 0.5;
