@@ -7,9 +7,11 @@ import net.minecraft.client.MinecraftClient; // To get the player instance
 import net.minecraft.client.gl.ShaderProgram; // For the shader program type
 import net.minecraft.client.gl.Uniform; // For the Uniform type
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.block.BlockModelRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
@@ -18,7 +20,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
+import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 // Assuming LightSkyboxBlockEntity is in this package or imported correctly
@@ -40,35 +44,25 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
     public static RenderLayer LIGHT_SKYBOX_BLOCK_RENDER_LAYER; // This is set in PoolRoomsClient
 
     public LightSkyboxBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        // Constructor logic if needed
+
     }
 
     @Override
     public void render(LightSkyboxBlockEntity lightSkyboxBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
+        matrixStack.push();
+
+        Camera camera = mc.gameRenderer.getCamera();
+
         Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
 
         VertexConsumer consumer = vertexConsumerProvider.getBuffer(this.getLayer());
 
-        ShaderProgram shaderProgram = PoolRoomsClient.getLightSkyboxShader();
+//        ShaderProgram shaderProgram = PoolRoomsClient.getLightSkyboxShader();
 
-        if (shaderProgram != null) {
-            PlayerEntity player = MinecraftClient.getInstance().player;
-
-            if (player != null) {
-                Vec3d playerPos = player.getPos();
-                shaderProgram.getUniform("playerPos").set((float)playerPos.getX(), (float)playerPos.getY(), (float)playerPos.getZ());
-//                Vec3d blockPos = lightSkyboxBlockEntity.getPos().toCenterPos();
-//                shaderProgram.getUniform("blockPos").set((float)blockPos.getX(), (float)blockPos.getY(), (float)blockPos.getZ());
-
-//                shaderProgram.getUniform("posDiffX").set((float) (playerPos.getX() - blockPos.getX()));
-//                shaderProgram.getUniform("posDiffY").set((float) (playerPos.getY() - blockPos.getY()));
-//                System.out.println("X: " + blockPos.getX() + ", Y: " + blockPos.getY() + ", Z: " + blockPos.getZ() +
-//                        ", Diff: " + shaderProgram.getUniform("posDiffX").getFloatData().get());
-
-                // If the uniform is found, set its value.
-                // This must happen *after* the shader is active.
-            }
-        }
+//        if (shaderProgram != null) {
+//            PlayerEntity player = MinecraftClient.getInstance().player;
+//
+//        }
 
         // --- END: Add PlayerYaw Uniform Setting ---
 
@@ -84,15 +78,17 @@ public class LightSkyboxBlockEntityRenderer implements BlockEntityRenderer<Light
         this.renderSide(entity, matrix, vertexConsumer, 0.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Direction.NORTH);
         this.renderSide(entity, matrix, vertexConsumer, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.0F, Direction.EAST);
         this.renderSide(entity, matrix, vertexConsumer, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 0.0F, Direction.WEST);
-        this.renderSide(entity, matrix, vertexConsumer, 0.0F, 1.0F, f, f, 0.0F, 0.0F, 1.0F, 1.0F, Direction.DOWN);
-        this.renderSide(entity, matrix, vertexConsumer, 0.0F, 1.0F, g, g, 1.0F, 1.0F, 0.0F, 0.0F, Direction.UP);
+        this.renderSide(entity, matrix, vertexConsumer, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F, Direction.DOWN);
+        this.renderSide(entity, matrix, vertexConsumer, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, Direction.UP);
     }
 
 
 
     protected float getTopYOffset() {
         return 1F;
-    }private void renderSide(
+    }
+
+    private void renderSide(
             LightSkyboxBlockEntity entity, Matrix4f model, VertexConsumer vertices, float x1, float x2, float y1, float y2, float z1, float z2, float z3, float z4, Direction side
     ) {
         vertices.vertex(model, x1, y1, z1).texture(0.0f, 1.0f); // Bottom-left

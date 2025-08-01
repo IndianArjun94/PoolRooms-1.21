@@ -56,7 +56,7 @@ public class PoolRoomsClient implements ClientModInitializer {
                     LIGHT_SKYBOX_SHADER = new ShaderProgram(
                             manager,
                             "rendertype_light_skybox_block", // This matches your JSON file name
-                            VertexFormats.POSITION_TEXTURE // Define the vertex format your shader expects
+                            VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL // Define the vertex format your shader expects
                     );
 
                     LIGHT_SKYBOX_PROGRAM = new RenderPhase.ShaderProgram(PoolRoomsClient::getLightSkyboxShader);
@@ -75,10 +75,11 @@ public class PoolRoomsClient implements ClientModInitializer {
                                 .texture(
                                         RenderPhase.Textures.create()
                                                 .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_NORTH_TEXTURE, false, false)
-//                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_EAST_TEXTURE, false, false)
-//                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_WEST_TEXTURE, false, false)
-//                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_TOP_TEXTURE, false, false)
-//                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_BOTTOM_TEXTURE, false, false)
+                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_EAST_TEXTURE, false, false)
+                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_SOUTH_TEXTURE, false, false)
+                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_WEST_TEXTURE, false, false)
+                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_TOP_TEXTURE, false, false)
+                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_BOTTOM_TEXTURE, false, false)
                                                 .build())
                                 .build(false)
                 );
@@ -86,8 +87,8 @@ public class PoolRoomsClient implements ClientModInitializer {
             }
         });
 
-        if (PoolRoomsClient.getLightSkyboxShader()!=null) {
-            PoolRoomsClient.getLightSkyboxShader().getUniform("uvScale").set(0.1f);
-        }
+//        if (PoolRoomsClient.getLightSkyboxShader()!=null) {
+//            PoolRoomsClient.getLightSkyboxShader().getUniform("uvScale").set(0.1f);
+//        }
     }
 }
