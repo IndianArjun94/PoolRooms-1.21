@@ -74,12 +74,12 @@ public class PoolRoomsClient implements ClientModInitializer {
                                 .program(PoolRoomsClient.LIGHT_SKYBOX_PROGRAM)
                                 .texture(
                                         RenderPhase.Textures.create()
-                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_NORTH_TEXTURE, false, false)
-                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_EAST_TEXTURE, false, false)
-                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_SOUTH_TEXTURE, false, false)
-                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_WEST_TEXTURE, false, false)
-                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_TOP_TEXTURE, false, false)
-                                                .add(LightSkyboxBlockEntityRenderer.LIGHT_SKYBOX_BOTTOM_TEXTURE, false, false)
+                                                .add(LIGHT_SKYBOX_TOP_TEXTURE, false, false)
+                                                .add(LIGHT_SKYBOX_NORTH_TEXTURE, false, false)
+                                                .add(LIGHT_SKYBOX_EAST_TEXTURE, false, false)
+                                                .add(LIGHT_SKYBOX_SOUTH_TEXTURE, false, false)
+                                                .add(LIGHT_SKYBOX_WEST_TEXTURE, false, false)
+                                                .add(LIGHT_SKYBOX_BOTTOM_TEXTURE, false, false)
                                                 .build())
                                 .build(false)
                 );

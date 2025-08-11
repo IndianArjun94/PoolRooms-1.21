@@ -50,10 +50,15 @@ vec2 sampleCube(vec3 v, out int faceIndex) {
 }
 
 void main() {
+    vec3 viewDir = normalize((inverse(ProjMat) * glPos).xyz);
+    viewDir = (inverse(RotMat) * vec4(viewDir, 0.0)).xyz;
+
+
     float near = 0.05;
     float far = (ProjMat[2][2]-1.)/(ProjMat[2][2]+1.) * near;
     int faceIndex = 0;
-    vec4 texPos = vec4(sampleCube(normalize((inverse(ProjMat * RotMat) * vec4(glPos.xy / glPos.w * (far - near), far + near, far - near)).xyz), faceIndex), 1.0, 1.0);
+//    vec4 texPos = vec4(sampleCube(normalize((inverse(ProjMat * RotMat) * vec4(glPos.xy / glPos.w * (far - near), far + near, far - near)).xyz), faceIndex), 1.0, 1.0);
+    vec4 texPos = vec4(sampleCube(viewDir, faceIndex), 1.0, 1.0);
     texPos = vec4(-texPos.x, texPos.y, texPos.z, texPos.w);
 
     vec4 color = textureProj(Sampler0, texPos);
