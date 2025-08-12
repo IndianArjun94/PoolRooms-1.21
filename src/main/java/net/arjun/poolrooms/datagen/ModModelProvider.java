@@ -14,7 +14,6 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.POOL_TILES).family(ModBlocks.POOL_TILES_FAMILY);
-        blockStateModelGenerator.registerItemModel(ModBlocks.LIGHT_SKYBOX_BLOCK);
     }
 
     @Override

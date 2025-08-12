@@ -3,10 +3,7 @@ package net.arjun.poolrooms.block;
 import net.arjun.poolrooms.PoolRooms;
 import net.arjun.poolrooms.block.entity.LightSkyboxBlockFamily.LightSkyboxBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.block.*;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -36,7 +33,7 @@ public class ModBlocks {
 //    Block Entity -----
 
     public static final Block LIGHT_SKYBOX_BLOCK = registerBlock("light_skybox_block",
-            new LightSkyboxBlock(AbstractBlock.Settings.create().strength(2f).sounds(BlockSoundGroup.GLASS)));
+            new LightSkyboxBlock(AbstractBlock.Settings.copy(Blocks.GLOWSTONE).strength(2f).sounds(BlockSoundGroup.GLASS)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
