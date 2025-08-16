@@ -6,7 +6,7 @@ public class PoolRoomsWorldMap {
     public static int X_BOUND;
     public static int Y_BOUND;
 
-    private int[][] rooms;
+    private PoolRoom[][] rooms;
 
     private int instances = 0;
 
@@ -25,7 +25,7 @@ public class PoolRoomsWorldMap {
         X_BOUND = xbound;
         Y_BOUND = ybound;
 
-        rooms = new int[xbound][ybound];
+        rooms = new PoolRoom[xbound][ybound];
 
         instance = this;
 
@@ -35,67 +35,75 @@ public class PoolRoomsWorldMap {
         return instance;
     }
 
-    private void updateRoom(int roomType, int x1, int y1) {
-        if (getSpot(x1, y1) == 0) {
-            rooms[(Y_BOUND)-y1][x1-1] = roomType;
+    private void updateRoom(PoolRoom room, int x, int y) {
+        if (getSpot(x, y) == null) {
+            rooms[(Y_BOUND) - y][x - 1] = room;
             slotsFilled++;
-            System.out.println("Set: (" + x1 + "," + y1 + ")");
+            System.out.println("Set: (" + x + "," + y + ")");
         } else {
-            System.err.println("Position: (" + x1 + "," + y1 + ") couldn't be set because it already was.");
+            System.err.println("Position: (" + x + "," + y + ") couldn't be set because it already was.");
             System.exit(1);
         }
     }
 
-    private int getSpot(int x1, int y1) {
+    private RoomType getSpot(int x1, int y1) {
         if ((Y_BOUND)-y1 <= Y_BOUND-1 && (Y_BOUND)-y1 >= 0 && x1-1 <= X_BOUND-1 && x1-1 >= 0) {
-            return rooms[(Y_BOUND) - y1][x1 - 1];
+            if (rooms[(Y_BOUND) - y1][x1 - 1] != null) {
+                return rooms[(Y_BOUND) - y1][x1 - 1].type;
+            } else {
+                return null;
+            }
+        } else {
+            return RoomType.OUT_OF_BOUNDS;
         }
-        return 5;
     }
 
     public void setRoom(RoomType roomType, int x1, int y1, int x2, int y2) {
         roomsFilled++;
+
+        PoolRoom room = new PoolRoom(roomType, x1, y1, x2, y2);
+
         if (roomType == RoomType.R1x1) {
-            updateRoom(1, x1, y1);
+            updateRoom(room, x1, y1);
         } else if (roomType == RoomType.R1x2) {
-            updateRoom(2, x1, y1);
-            updateRoom(2, x2, y2);
+            updateRoom(room, x1, y1);
+            updateRoom(room, x2, y2);
         } else if (roomType == RoomType.R1x3) {
-            updateRoom(3, x1, y1);
-            updateRoom(3, (x1+x2)/2, (y1+y2)/2);
-            updateRoom(3, x2, y2);
+            updateRoom(room, x1, y1);
+            updateRoom(room, (x1+x2)/2, (y1+y2)/2);
+            updateRoom(room, x2, y2);
         } else if (roomType == RoomType.R2x2) {
-            updateRoom(4, x1, y1);
-            updateRoom(4, x1, y2);
-            updateRoom(4, x2, y1);
-            updateRoom(4, x2, y2);
+            updateRoom(room, x1, y1);
+            updateRoom(room, x1, y2);
+            updateRoom(room, x2, y1);
+            updateRoom(room, x2, y2);
         }
     }
 
     public boolean spotIsAvailable(int x1, int y1) {
-        return getSpot(x1, y1) == 0;
+        return getSpot(x1, y1) == null;
     }
 
     public boolean roomIsAvailable(RoomType roomType, int x1, int y1, int x2, int y2) {
         if (roomType == RoomType.R1x1) {
-            return getSpot(x1, y1) == 0;
+            return getSpot(x1, y1) == null;
         } else if (roomType == RoomType.R1x2) {
-            return getSpot(x1, y1) == 0 && getSpot(x2, y2) == 0;
+            return getSpot(x1, y1) == null && getSpot(x2, y2) == null;
         } else if (roomType == RoomType.R1x3) {
-            return getSpot(x1, y1) == 0 && getSpot((x1+x2)/2, (y1+y2)/2) == 0 && getSpot(x2, y2) == 0;
+            return getSpot(x1, y1) == null && getSpot((x1+x2)/2, (y1+y2)/2) == null && getSpot(x2, y2) == null;
         } else if (roomType == RoomType.R2x2) {
-            return getSpot(x1, y1) == 0 && getSpot(x1, y2) == 0 && getSpot(x2, y1) == 0 && getSpot(x2, y2) == 0;
+            return getSpot(x1, y1) == null && getSpot(x1, y2) == null && getSpot(x2, y1) == null && getSpot(x2, y2) == null;
         }
 
         return false;
     }
 
-    public void print() {
-        for (int i = 1; i <= Y_BOUND; i++) {
-            for (int j = 1; j <= X_BOUND; j++) {
-                System.out.print(getSpot(i,j) + " ");
-            }
-            System.out.println();
-        }
-    }
+//    public void print() {
+//        for (int i = 1; i <= Y_BOUND; i++) {
+//            for (int j = 1; j <= X_BOUND; j++) {
+//                System.out.print(getSpot(i,j) + " ");
+//            }
+//            System.out.println();
+//        }
+//    }
 }

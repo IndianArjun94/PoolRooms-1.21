@@ -32,7 +32,7 @@ public class WorldGenConceptDev {
 
         PoolRoomsWorldMap map = new PoolRoomsWorldMap(15, 15);
 
-//        map.setRoom(RoomType.R1x1, startingX, startingY, startingX, startingY);
+        map.setRoom(RoomType.R1x1, startingX, startingY, startingX, startingY);
 
         while (map.slotsFilled != X_BOUND*Y_BOUND) {
             int nextRoomAll = ThreadLocalRandom.current().nextInt(1, 5);
@@ -81,6 +81,6 @@ public class WorldGenConceptDev {
             y = xy[1];
         }
 
-        map.print();
+//        map.print();
     }
 }
