@@ -2,7 +2,7 @@ package net.arjun.poolrooms.block.entity;
 
 import net.arjun.poolrooms.PoolRooms;
 import net.arjun.poolrooms.block.ModBlocks;
-import net.arjun.poolrooms.block.entity.LightSkyboxBlockFamily.LightSkyboxBlockEntity;
+import net.arjun.poolrooms.block.entity.SkyboxBlockFamily.SkyboxBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -12,8 +12,8 @@ import net.minecraft.util.Identifier;
 
 public class ModBlockEntities {
 
-    public static final BlockEntityType<LightSkyboxBlockEntity> LIGHT_SKYBOX_BLOCK_ENTITY = register("light_skybox_block_entity",
-            LightSkyboxBlockEntity::new, ModBlocks.LIGHT_SKYBOX_BLOCK);
+    public static final BlockEntityType<SkyboxBlockEntity> SKYBOX_BLOCK_ENTITY = register("skybox_block_entity",
+            SkyboxBlockEntity::new, ModBlocks.SKYBOX_BLOCK);
 
     private static <T extends BlockEntity> BlockEntityType<T> register(
             String name,

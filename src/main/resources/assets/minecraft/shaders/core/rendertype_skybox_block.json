@@ -4,8 +4,8 @@
     "srcrgb": "srcalpha",
     "dstrgb": "1-srcalpha"
   },
-  "vertex": "rendertype_light_skybox_block",
-  "fragment": "rendertype_light_skybox_block",
+  "vertex": "rendertype_skybox_block",
+  "fragment": "rendertype_skybox_block",
   "attributes": [
     "Position",
     "Color",

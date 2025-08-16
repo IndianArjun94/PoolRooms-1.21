@@ -1,4 +1,4 @@
-package net.arjun.poolrooms.block.entity.LightSkyboxBlockFamily;
+package net.arjun.poolrooms.block.entity.SkyboxBlockFamily;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.BlockRenderType;
@@ -8,8 +8,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-public class LightSkyboxBlock extends BlockWithEntity {
-    public LightSkyboxBlock(Settings settings) {
+public class SkyboxBlock extends BlockWithEntity {
+    public SkyboxBlock(Settings settings) {
         super(settings);
     }
 
@@ -20,7 +20,7 @@ public class LightSkyboxBlock extends BlockWithEntity {
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new LightSkyboxBlockEntity(pos, state);
+        return new SkyboxBlockEntity(pos, state);
     }
 
     @Override

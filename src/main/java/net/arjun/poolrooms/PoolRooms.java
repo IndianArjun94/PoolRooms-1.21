@@ -2,6 +2,7 @@ package net.arjun.poolrooms;
 
 import net.arjun.poolrooms.block.ModBlocks;
 import net.arjun.poolrooms.block.entity.ModBlockEntities;
+import net.arjun.poolrooms.commmand.ModCommands;
 import net.arjun.poolrooms.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 

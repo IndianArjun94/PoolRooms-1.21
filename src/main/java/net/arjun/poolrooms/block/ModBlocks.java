@@ -1,7 +1,7 @@
 package net.arjun.poolrooms.block;
 
 import net.arjun.poolrooms.PoolRooms;
-import net.arjun.poolrooms.block.entity.LightSkyboxBlockFamily.LightSkyboxBlock;
+import net.arjun.poolrooms.block.entity.SkyboxBlockFamily.SkyboxBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.data.family.BlockFamily;
@@ -32,8 +32,8 @@ public class ModBlocks {
 
 //    Block Entity -----
 
-    public static final Block LIGHT_SKYBOX_BLOCK = registerBlock("light_skybox_block",
-            new LightSkyboxBlock(AbstractBlock.Settings.copy(Blocks.GLOWSTONE).strength(2f).sounds(BlockSoundGroup.GLASS)));
+    public static final Block SKYBOX_BLOCK = registerBlock("skybox_block",
+            new SkyboxBlock(AbstractBlock.Settings.copy(Blocks.GLOWSTONE).strength(2f).sounds(BlockSoundGroup.GLASS)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

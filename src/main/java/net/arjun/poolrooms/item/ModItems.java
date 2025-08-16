@@ -15,7 +15,7 @@ public class ModItems {
 
     public static final Item POOL_SPEAR = registerItem("pool_spear", new Item(new Item.Settings()));
 
-    public static final Item POOL_RATIONS = registerItem("pool_rations", new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(3).saturationModifier(4).build())));
+    public static final Item POOL_RATIONS = registerItem("pool_rations", new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(5).saturationModifier(0.6f).build())));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(PoolRooms.MOD_ID, name), item);
