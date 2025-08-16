@@ -58,6 +58,15 @@ public class PoolRoomsWorldMap {
         }
     }
 
+    public PoolRoom getRoom(int x1, int y1) {
+        if ((Y_BOUND)-y1 <= Y_BOUND-1 && (Y_BOUND)-y1 >= 0 && x1-1 <= X_BOUND-1 && x1-1 >= 0) {
+            if (rooms[(Y_BOUND) - y1][x1 - 1] != null) {
+                return rooms[(Y_BOUND) - y1][x1 - 1];
+            }
+        }
+        return null;
+    }
+
     public void setRoom(RoomType roomType, int x1, int y1, int x2, int y2) {
         roomsFilled++;
 
@@ -106,4 +115,52 @@ public class PoolRoomsWorldMap {
 //            System.out.println();
 //        }
 //    }
+
+    public void registerNodes() {
+        for (int y = 1; y <= Y_BOUND; y++) {
+            for (int x = 1; x <= X_BOUND; x++) {
+                PoolRoom room = getRoom(x,y);
+
+                if (room.y < Y_BOUND) { // NORTH
+                    if (x == room.x) {
+                        room.NORTH = getRoom(x,room.y+1);
+                    } else if (x == room.x+1) {
+                        room.NORTH2 = getRoom(x,room.y+1);
+                    } else if (x == room.x+2) {
+                        room.NORTH3 = getRoom(x,room.y+1);
+                    }
+                }
+
+                if (room.y2 > 1) { // SOUTH
+                    if (x == room.x) {
+                        room.SOUTH = getRoom(x,room.y2-1);
+                    } else if (x == room.x+1) {
+                        room.SOUTH2 = getRoom(x,room.y2-1);
+                    } else if (x == room.x+2) {
+                        room.SOUTH3 = getRoom(x,room.y2-1);
+                    }
+                }
+
+                if (room.x2 < X_BOUND) { // EAST
+                    if (y == room.y) {
+                        room.EAST = getRoom(room.x2+1,room.y);
+                    } else if (y == room.y-1) {
+                        room.EAST2 = getRoom(room.x2+1,room.y);
+                    } else if (y == room.y-2) {
+                        room.EAST3 = getRoom(room.x2+1,room.y);
+                    }
+                }
+
+                if (room.x > 1) { // WEST
+                    if (y == room.y) {
+                        room.WEST = getRoom(room.x-1,room.y);
+                    } else if (y == room.y-1) {
+                        room.WEST2 = getRoom(room.x-1,room.y);
+                    } else if (y == room.y-2) {
+                        room.WEST3 = getRoom(room.x-1,room.y);
+                    }
+                }
+            }
+        }
+    }
 }

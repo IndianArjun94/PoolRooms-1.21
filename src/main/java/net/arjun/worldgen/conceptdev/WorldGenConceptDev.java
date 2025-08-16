@@ -22,7 +22,7 @@ public class WorldGenConceptDev {
     *                - Change the room TO A VALID ROOM (empty/unassigned) after single room generation is done
     *                - Test!*/
     public static void main(String[] args) {
-        System.out.println("This is WorldGenConceptDev!");
+        System.out.println("This is WorldGenConceptDev!\n");
 
         int startingX = 8;
         int startingY = 8;
@@ -82,5 +82,7 @@ public class WorldGenConceptDev {
         }
 
 //        map.print();
+
+        map.registerNodes();
     }
 }

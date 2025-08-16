@@ -13,6 +13,19 @@ public class PoolRoom {
     public final int y;
     public final int y2;
 
+    public PoolRoom NORTH;
+    public PoolRoom NORTH2;
+    public PoolRoom NORTH3;
+    public PoolRoom SOUTH;
+    public PoolRoom SOUTH2;
+    public PoolRoom SOUTH3;
+    public PoolRoom EAST;
+    public PoolRoom EAST2;
+    public PoolRoom EAST3;
+    public PoolRoom WEST;
+    public PoolRoom WEST2;
+    public PoolRoom WEST3;
+
     public ArrayList<Direction> entrances = new ArrayList<>();
 
     public PoolRoom(RoomType type, int x, int y, int x2, int y2) {
